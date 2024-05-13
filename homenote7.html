@@ -1,0 +1,142 @@
+<html>
+<head>
+<style>
+  #universe {
+    width:600px;
+    height:600px;
+    background:url("bg_stars.jpg");
+    animation:bg_move 2s linear infinite;
+    posistion:relative;
+  }
+  @keyframes bg_move {
+    0%{background-position-y:0px;}
+    100%{background-position-y:213px;}
+  }
+  #ship {
+    width:60px;
+    height:60px;
+    position:absolute;
+    left:270px;
+    top:540px;
+  }
+  .ufo {
+    width:60px;
+    height:60px;
+    relative:absolute;
+
+  }
+  .bullet {
+    width:3px;
+    height:5px;
+    background:red;
+    posistion:absolute;
+  }
+</style>
+<script>
+  function get(id) {
+    return document.getElementById(id);
+  }
+  function gets(qs) {
+    return Array.from(document.querySelectorAll(qs))
+  }
+  function getRnd(min,max) {
+      return Math.floor(Math.random()*(max-min+1))+min;
+    }
+  }
+  function gameInit() {
+   mydir={,"ArrayDown":0,,"ArrayLeft":0,"ArrarRight":0,"ArrarUp":0};
+   ship={w:60,h:60,x:270,y:540};
+   setInterval(ship_move,10);
+   setInterval(ufo_create,1000);
+  }
+  function mykeydown(event) {
+    ev.preventDefault();
+    mydir=[keys[ev.key]]=1;
+  }
+  function mykeyup(event) {
+    ev.preventDefault();
+    if(ev.key==" ") {
+
+    } else {
+      mydir[ev.key]
+    }
+    mydir=[keys[ev.key]]=0;
+  }
+  function ship_move() {
+    if(mydir["ArrayDown"]){
+      if( ship.y + ship.h < 600)ship.y++;
+    }else if(mydir["ArrayLeft"]) {
+      if(ship.y > 0)ship.x--;
+    }else if(mydir["ArrarRight"]) {
+      if(ship.x + ship.w < 600)ship.x++;
+    }else if(mydir["ArrarUp"]) {
+      if(ship.y > 300)ship.y--;
+    }
+    get("ship").style.left=ship.x+"px";
+    get("ship").style.top=ship.y+"px";
+  }
+  function die(o) {
+    clearInterval(o.move);
+    o.remove();
+  }
+  function ufo_move(u) {
+    if(u.pos.y>540){
+    return die(u);
+    u.remove();
+    }
+    u.pos.y+=getRnd(1,10);
+    u.style.left=u.pos.x+"px"
+    u.style.top=u.pos.y+"px";
+  }
+  function ufo_create() {
+    var u=document.createElement("img");
+    u.src="ufo.png";
+    u.className="ufo";
+    u.w=60; u.h=60;
+    u={x:getRnd(0,540),y:0};
+    u.move=setInterval(ufo_move,500,u);
+    u.style.left=u.pos.x+"px";
+
+    get("universe").appendChild(u);  
+  }
+  function shoot() {
+    var b=document.createElement("div");
+
+    b.className="bullet";
+    b.pos={x:ship.x+30,y:ship.y};
+    b.move=setInterval(bullet_move,10,b);
+    b.style.left=b.pos.x+"px";
+
+    get("universe").appendChild(b);
+  }
+  function bullet_move(b) {
+    if(b.pos.y<0) {
+      return die(b);
+      b.remove();
+      return;
+    }
+    if() {
+
+    }else {
+      b.pos.y--;
+      b.style.top=b.pos.y+"px";
+      var hit=gets(".ufo").filter(fuction(u){
+        return (u.pos.x<this.pos.x && u.pos.x+u.w>this.pos.x+this.w) &&                         (u.pos.y+u.h>=this.pos.y);
+      },b);
+      if(hit.length>0) {
+        die(b);
+        hit.forEach(function(u){die(u);})
+      }
+    }
+
+  }
+  
+</script>
+</head>
+<body onload="gameInit();" onkeydown="mykeydown(event);" onkeyup="mykeyup(event);" >
+  <div id="universe">
+    <img id="ship" src="ship.png">
+    <img class="ufo" src="ufo.png"></div>
+  </div>
+</body>
+</html>

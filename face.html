@@ -1,0 +1,196 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>11818 蔡明翰 210557</title>
+  <style>
+  #face {
+    margin-bottom: 20px;
+    margin:50px;
+    text-align:center;
+    width:180px;
+    height:275px;
+    background:#FFD3A8;
+    border-radius:50% 50% 100px 100px;
+    
+  }
+  #blush {
+    margin-top:0px;
+  }
+  .blush1 {
+    margin-top: -10px;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    
+    background:radial-gradient(circle,red 10%,yellow);
+    border-radius: 100px;
+  }
+  .blush2 {
+    margin-top: -40px;
+    margin-left: 130px;
+    width: 40px;
+    height: 40px;
+    background:radial-gradient(circle,red 10%,yellow);
+    border-radius: 100px;
+  }
+  #eyebrows {
+    display:inline-block;
+    margin-top:0px;
+  }
+  #eyes {
+    margin-bottom:10px;
+  }
+  #nose {
+    display:inline-block;
+    margin-top:0px;
+    width:40px;
+    height:20px;
+    border:solid red;
+    border-radius:50px;
+  }
+  .nose1 {
+    position: relative;
+    top:5.5px;
+    left:5px;
+    width: 2px;
+    height: 2px;
+    border:solid black;
+    background-color:black;
+    border-radius: 100%;
+  }
+  .nose2 {
+    position: relative;
+    bottom:2px;
+    left:25px;
+    width: 2px;
+    height: 2px;
+    border:solid black;
+    background-color:black;
+    border-radius: 100%;
+  }
+  #mouth {
+    display:inline-block;
+    margin-top: -50px;
+    width:70px;
+    height:50px;
+    background:indianred;
+    margin-bottom:10px;
+    border-radius:100px 100px 100px 100px;
+    border-bottom:solid #FD7781 5px;
+    border-top:solid #FD7781 5px;
+  }
+  .eyebrow {
+    display:inline-block;
+    width:55px;
+    height:5px;
+    background:black;
+    border-radius: 10% 10% 10px 10px;
+  }
+  .eye {
+    display:inline-block;
+    position:relative;
+    width:40px;
+    height:40px;
+    background:white;
+    border-radius:100px;
+  }
+  .eyeballL {
+    display:inline-block;
+    position:relative;
+    top:15px;
+    width:10px;
+    height:10px;
+    background:cadetblue;
+    border-radius:100%;
+    animation:a1 2s infinite linear;
+  }
+  .eyeballR {
+    display:inline-block;
+    position:relative;
+    top:15px;
+    width:10px;
+    height:10px;
+    background:cadetblue;
+    border-radius:100%;
+    animation:a2 1s infinite linear;
+  }
+  #eyebrowL {
+    transform:rotate(10deg) translate(-5px,0px);
+    animation:b1 1s infinite linear;
+  }
+  #eyebrowR {
+    transform:rotate(-10deg) translate(5px,0px);
+    animation:b2 1s infinite linear;
+  }
+  #hairs {
+    position:relative;
+    left:-30px;
+    width:260px;
+  }
+  #hair1 {
+    display:inline-block;
+    position:relative;
+    margin-left:-20px;
+    left:20	px;
+    top:-10px;
+    width:170px;
+    height:80px;
+    background:black;
+    border-radius:100px 100px 0px 0px;
+    
+  }
+  
+  @keyframes a1 {
+    0%{transform:translate(0px,0px);}
+    25%{transform:translate(-10px,0px);}
+    50%{transform:translate(0px,0px);}
+    75%{transform:translate(10px,0px);}
+    100%{transform:translate(0px,0px);}
+  }
+  @keyframes a2 {
+    0%{transform:translate(0px,0px);}
+    25%{transform:translate(0px,-10px);}
+    50%{transform:translate(0px,0px);}
+    75%{transform:translate(0px,10px);}
+    100%{transform:translate(0px,0px);}
+  }
+  @keyframes b1 {
+    0%{transform:rotate(-10deg) translate(-5px,0px);}
+    50%{transform:rotate(-10deg) translate(-5px,-5px);}
+    100%{transform:rotate(-10deg) translate(-5px,0px);}
+  }
+  @keyframes b2 {
+    0%{transform:rotate(10deg) translate(5px,0px);}
+    50%{transform:rotate(10deg) translate(5px,-5px);}
+    100%{transform:rotate(10deg) translate(5px,0px);}
+  }
+  </style>
+</head>
+<body>
+  <div id="face">
+    <div id="hairs">
+      <div id="hair1"></div>
+      
+    </div>
+    <div id="eyebrows">
+      <div id="eyebrowL" class="eyebrow"></div>
+      <div id="eyebrowR" class="eyebrow"></div>
+    </div>
+    <div id="eyes">
+      <div class="eye"><div class="eyeballL"></div></div>
+      <div class="eye"><div class="eyeballR"></div></div>
+    </div>
+    
+    <div id="nose">
+      <div class="nosep"><div class="nose1"></div></div>
+      <div class="nosep"><div class="nose2"></div></div>
+    </div>
+    <div id="blush">
+      <div class="blushs"><div class="blush1"></div></div>
+      <div class="blushs"><div class="blush2"></div></div>
+    </div>
+    <br><br>
+    <div id="mouth"></div>
+  </div>
+</body>
+</html>

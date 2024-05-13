@@ -1,0 +1,78 @@
+<html>
+<head>
+  <style>
+    #msg {
+      font-size:48px;
+      color:blue;
+    }
+  </style>
+  <script>/*多行*/  //單行
+    function sayHello() {
+      //console.log("跨啥"); 
+      // alert("你好");
+      // ans=prompt("你是誰?");
+      confirm("你確定嗎?");
+      console.log(ans);
+      //elm=document.getElementById("msg");
+      //elm.innerHTML="你好";
+      }
+    function add() {
+      x=parseFloat(get("a1").value);
+      y=parseFloat(get("a2").value);
+
+      document.getElementById("ans").value=x+y;
+    }
+    function get(id) {
+      return document.getElementById(id);
+    }
+    function getRnd(min,max) {
+      return Math.floor(Math.random()*(max-min+1));
+    }
+    function gamestart() {
+      get("btstart").style.display="none";
+      min=0;max=100;
+      ans=getRnd(min,max;)
+      get("min").innerHTML=min;
+      get("max").innerHTML=max;
+      get("user").min=min;
+      get("user").max=max;
+      get("123").style.display="block";
+      
+    }
+    function guess() {
+      user=parsInt(get("user").value);
+      if(user==ans) {
+        alert("boom");
+        get("bystart").style.display="block";
+      }else if(user < ans) {
+        min=user;
+        get("user").min=min;
+        get("user").value="";
+      }else if(user > ans) {
+          max=user;
+          get("user").max=max;
+          get("user").value="";
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <button onclick="sayHello();">哈摟</button>
+  <div id="msg"></div>
+  <input type="text" placeholder="請輸入" maxlength="8" size="8" value="123abcdef"><br>
+  <input type="password"><br>
+  <input type="number" max="100" min="10"><br>
+  <input type="range"><br>
+  <input type="date" max="2024-03-31" min="2024-03-15"><br>
+  <input type="datetime-local"><br>
+  <input type="color" value="FF0000"><br><input type="file"><br>
+  <input  type="text" id="a1">+<input type="text" id="a2">
+  <button onclick="add();">=</button><input type="text" id="ans" readonly><br>
+  <button id="btstart" onclick="gamestart();">遊戲開始</button>
+  <div id="123" style="display:none;">
+  <span id="min"></span> &lt; <input type="number" id="user"> &lt; <span id="max"></span> 
+    <button onclick="guess();">確定</button>
+    </div>
+</body>
+</html>

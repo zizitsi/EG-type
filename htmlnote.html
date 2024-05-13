@@ -1,0 +1,79 @@
+<html>
+<head>
+ <meta charset="utf8">
+  <title>CSS-漸層</title>
+<style>
+div {
+  width:200px;
+  height:100px;
+  border;1px solid black;
+  margin-bottom:10px;
+}
+  #d1 {
+ /*linear-grediant();漸層不是一個顏色,不能用在color,要當作一個圖片*/
+  background: linear-gradient(red,yellow);/*方向1:to top/right/bottom/left 方向2:0~360deg 0是上 90是右*/
+}
+  #d2 {
+ background: linear-gradient(to right,hsl(0deg,100%,50%),hsl(30deg,100%,50%),hsl(60deg,100%,50%),hsl(90deg,100%,50%),hsl(120deg,100%,50%),hsl(150deg,100%,50%),hsl(180deg,100%,50%),hsl(210deg,100%,50%),hsl(240deg,100%,50%),hsl(270deg,100%,50%),hsl(300deg,100%,50%));
+}
+  #d3 {
+ background: linear-gradient(90deg, red 0%, white 50%, yellow, blue 100%);
+}
+  #d4 {
+ background:repeating-linear-gradient(135deg, red 20%, white 25%, red 30%);
+}
+
+  #r2 {
+  background:radial-gradient(circle,yellow,white 30%,black);
+}
+  #r3 {
+    background:repeating-radial-gradient(circle,grey 20%,white 30%,black 40%);
+}
+/*conic-gradient();*/
+  #c1 {
+  background:conic-gradient(red,green,blue,red);
+  }
+  #c2 {
+    background:repeating-conic-gradient(red 10%,white 15%,red 20%);
+  }
+  @keyframes kc2 {
+    0% {
+      background:repeating-conic-gradient(red 10%,white 15%,red 20%);
+    }
+    50% {
+      background:repeating-conic-gradient(white 10%,red 15%,white 20%);
+    }
+    100% {
+      background:repeating-conic-gradient(red 10%,white 15%,red 20%);
+    }
+  }
+ 
+  #ac2 {
+    animation:kc2 0.7s linear infinite;
+  }
+  #ac3 {
+    animation:kc3 2s linear infinite;
+  }
+  
+</style>
+  
+</head>
+<body>
+html筆記
+</body>
+  <div id="d1"></div>
+  <div id="d2"></div>
+  <div id="d3"></div>
+  <div id="d4"></div>
+  <div id="r1"></div>
+  <div id="r2"></div>
+  <div id="r3"></div>
+  <div id="c1"></div>
+  <div id="c2"></div>
+  <div id="ac2"></div>
+  <div id="ac3"></div>
+  <div id="outer">
+    <div id="inner1"></div>
+    <div id="inner2"></div>
+  </div>
+</html>

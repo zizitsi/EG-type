@@ -1,0 +1,73 @@
+<html>
+  <head>
+  <script>
+    function get(id) {
+      return document.getElementById(id);
+    }
+    function gets(qs) {
+      return Array.from(document.querySelectorAll(qs));
+    }
+    
+    function gamestart() {
+      get("123").style.display="none";
+      cards=[1,1,2,2,3,3,4,4,5,5,6,6];
+      cards.sort(function() {return Math.random()-0.5;});
+      imgs=gets("img");
+      /*for(i=0;i<imgs.length;i++) {
+        imgs[i].src="pic/"+cards[i]+".png";
+      }*/
+      gets("img").forEach(function(a,i) {
+        a.src="pic/"+cards[idx]+".png";
+      });
+      setTimeout(function() {
+        gets("img").forEach(function(a) {
+          a.src="pic/1.png";
+        });
+      },3000);
+      p1=-1;p2=-1;
+      
+    }
+    function hit(idx) {
+      if(p1==-1) {
+        p1=idx;
+        gets("img")[idx].src="pic/"+cards[idx]+".png";
+        return;
+      }
+      if(p1==idx) {return;}
+      if(p2==-1){
+        p2=idx;
+        imgs[idx].src="pic/"+cards[idx]+".png";
+      }
+      if(cards[p1]==cards[p2]) {
+        p1=-1;p2=-1;
+        return;
+      }
+      setTimeout(function() {
+        imgs[p1].src="pic/0.png";
+        imgs[p2].src="pic/0.png";
+        p1=-1;p2=-1;
+      },1000);
+    }
+  </script>
+  <style>
+   
+  </style>
+  </head>
+  <body>
+    
+    <img src="pic/1.png" onclick="hit(0);">
+    <img src="pic/1.png" onclick="hit(1);">
+    <img src="pic/1.png" onclick="hit(2);">
+    <img src="pic/1.png" onclick="hit(3);"><br>
+    <img src="pic/1.png" onclick="hit(4);">
+    <img src="pic/1.png" onclick="hit(5);">
+    <img src="pic/1.png" onclick="hit(6);">
+    <img src="pic/1.png" onclick="hit(7);"><br>
+    <img src="pic/1.png" onclick="hit(8);">
+    <img src="pic/1.png" onclick="hit(9);">
+    <img src="pic/1.png" onclick="hit(10);">
+    <img src="pic/1.png" onclick="hit(11);"><br>
+    
+    <button id="123"onclick="gamestart();">開始</button>
+  </body>
+</html>
