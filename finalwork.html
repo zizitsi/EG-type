@@ -1,14 +1,136 @@
 <html>
-<head>
-<style>
+  <head>
 
-</style>
-<script>
-  
-</script>
+      <title>英打遊戲</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              text-align: center;
+          }
+          #game-container {
+              margin:125px;
+              margin-top:0px;
+              width: 500px;
+              height: 400px;
+              border: 1px solid black;
+              position: relative;
+              overflow: hidden;
+          }
+          .word {
+              position: absolute;
+              top: 0;
+              color:red;
+          }
+      </style>
+  </head>
+  <script>
 
-</head>
+    var words =         
+  ["abundant","acquire","adequate","advocate","ambiguous","anomaly","beneficial","compile","conclusive","constraint","deduce","deficient","devise","derive","distinct","emerge","evaluate","explicit","generate","hypothesis","isolate","significant","subsepuent"];
+    var score = 0;
+    var timer = 60;
+    var gameInterval;
+    var gameContainer = document.getElementById("game-container");
+
+
+    function getRandomWord() {
+        var randomIndex = Math.floor(Math.random() * words.length);
+        return words[randomIndex];
+    }
+
+
+    function createWordElement() {
+        var word = getRandomWord();
+        var wordElement = document.createElement("div");
+        wordElement.classList.add("word");
+        wordElement.textContent = word;
+        wordElement.style.left = Math.random() * (gameContainer.clientWidth - 50) + "px";
+        gameContainer.appendChild(wordElement);
+        return wordElement;
+    }
+
+
+    function dropWord(wordElement) {
+        var dropInterval = setInterval(function() {
+            wordElement.style.top = wordElement.offsetTop + 5 + "px";
+            if (wordElement.offsetTop > gameContainer.clientHeight) {
+                clearInterval(dropInterval);
+                wordElement.remove();
+            }
+        }, 100);
+    }
+
+
+    function updateScore() {
+        score++;
+        document.getElementById("score").innerText = "Score: " + score;
+    }
+
+
+    function updateTimer() {
+        timer--;
+        document.getElementById("time").innerText = "Time: " + timer;
+        if (timer <= 0) {
+            clearInterval(gameInterval);
+            alert("Game Over! Your score is " + score);
+            resetGame();
+        }
+    }
+
+
+    function checkInput() {
+        var userInput = document.getElementById("userInput").value;
+        var wordElements = document.querySelectorAll(".word");
+        wordElements.forEach(function(wordElement) {
+            if (wordElement.textContent === userInput) {
+                updateScore();
+                wordElement.remove();
+                document.getElementById('userInput').value ="";
+            }
+        });
+    }
+
+
+    function startGame() {
+        gameInterval = setInterval(function() {
+            var wordElement = createWordElement();
+            dropWord(wordElement);
+        }, 4000);
+
+        var timerInterval = setInterval(function() {
+            updateTimer();
+        }, 1000);
+
+        document.getElementById("userInput").addEventListener("input", checkInput);
+    }
+
+
+    function resetGame() {
+        score = 0;
+        timer = 60;
+        document.getElementById("score").innerText = "Score: 0";
+        document.getElementById("time").innerText = "Time: 60";
+        document.getElementById("userInput").value = "";
+        document.querySelectorAll(".word").forEach(function(word) {
+            word.remove();
+        });
+        clearInterval(gameInterval);
+    }
+
+
+    function initGame() {
+        resetGame();
+        startGame();
+    }
+
+
+    initGame();
+  </script>
 <body>
-    
+    <div id="game-container">
+        <div id="score">Score: 0</div>
+        <div id="time">Time: 60</div>
+        <input type="text" id="userInput" placeholder="Type here">
+    </div>
 </body>
 </html>
